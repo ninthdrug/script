@@ -1,0 +1,16 @@
+#!/bin/bash
+# add a directory to the PATH
+
+usage(){
+    echo "usage: addpath <directory>"
+    exit 1
+}
+
+# if directory is not supplied call usage
+[[ $# -ne 1 ]] && usage
+
+d=$1
+p='$PATH'
+egrep -q "^PATH=$d:" $HOME/.profile || (
+    echo "PATH=$d:$p" >> $HOME/.profile
+)
